@@ -24,21 +24,44 @@ export default class Game extends React.Component {
     input[index_A] = input[index_B];
     input[index_B] = temp;
     input[index_A] = null
+  }
+
+  srcHandeler(squares, player, i) {
+    console.log(squares[i])
+    if (squares[i] && squares[i].player === this.state.player) {
+      this.setState({
+        srcIndex: i,
+      })
+
+    } else {
+      this.setState({
+        warning: `Wrong player selected Select  Player ${this.state.player} Pieces`
+      })
+
+    }
+  }
+
+  destHandeler(squares, player, srcIndex, i) {
+
+
+    let destIndex = i
+    if (squares[i] && squares[i].player === player) {
+      this.srcHandeler(squares, player, i)
+    } else {
+
+      this.swap(squares, srcIndex, destIndex);
+      console.log(srcIndex, destIndex)
+      this.setState({
+        srcIndex: -1,
+        player: player === 1 ? 2 : 1,
+      })
+    }
+
+    console.log(squares[i].player)
 
 
   }
-  srcHandeler(i) {
-    this.setState({
-      srcIndex: i,
-    })
-  }
-  destHandeler(player) {
 
-    this.setState({
-      srcIndex: -1,
-      player: player === 1 ? 2 : 1,
-    })
-  }
   clickHandeler(i) {
 
     let { squares, player, srcIndex } = this.state
@@ -48,30 +71,12 @@ export default class Game extends React.Component {
     })
 
     if (srcIndex === -1) {
-      console.log(squares[i])
-      if (squares[i] && squares[i].player === this.state.player) {
-        this.srcHandeler(i)
-
-      } else {
-        this.setState({
-          warning: `wrong player selected Select  Player ${this.state.player} Pieces`
-        })
-
-      }
+      this.srcHandeler(squares, player, i)
     }
     // destination selection
     else {
-      let destIndex = i;
-      this.destHandeler(player)
-
-      this.swap(squares, srcIndex, destIndex);
-      console.log(srcIndex, destIndex)
+      this.destHandeler(squares, player, srcIndex, i)
     }
-
-
-
-
-
 
 
   }
