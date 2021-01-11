@@ -15,6 +15,7 @@ export default class Board extends React.Component {
 			style={this.props.squares[i] ? this.props.squares[i].style : null}
 			shade={squareShade}
 			onClick={() => this.props.onClick(i)}
+
 		/>)
 	}
 
@@ -38,5 +39,5 @@ export default class Board extends React.Component {
 }
 
 function Even(number) {
-	return number % 2 == 0
+	return number % 2 === 0
 }

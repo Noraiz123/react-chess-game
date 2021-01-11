@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 class Pieces {
 	constructor(player, iconUrl) {
 		this.player = player;

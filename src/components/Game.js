@@ -22,6 +22,8 @@ export default class Game extends React.Component {
 
 		input[index_A] = input[index_B];
 		input[index_B] = temp;
+		input[index_A] = null
+
 
 	}
 
@@ -30,66 +32,41 @@ export default class Game extends React.Component {
 		// console.log(i);
 		let srcIndex = this.state.srcIndex
 
-		// console.log("Clicked")s
-		// console.log(this.state.squares[i])
 
-		// if (squares[i]) {
-		// 	this.setState({
-		// 		selection: !this.state.selection
-		// 	})
-
-		// 	if (this.state.selection === true) {
-		// 		squares[i].style = { ...squares[i].style, backgroundColor: "grey" }
-
-		// 	}
-		// 	else {
-
-		// 		squares[i].style = { ...squares[i].style }
-
-		// 	}
-		// let index = squares[i].indexOf(squares[i])
-		// console.log(index)
-		// squares.fill(null);
-		// console.log(squares)
-
-
-		if (srcIndex == -1) {
+		// let destIndex
+		if (srcIndex === -1) {
 
 			this.setState({
-				srcIndex: i
+				srcIndex: i,
+				// player: 1
+
 			})
 
 		} else {
 			let destIndex = i;
 			this.setState({
-				srcIndex: -1
+				srcIndex: -1,
+				player: 2
 			})
+			if (this.state.player === 2) {
+				this.setState({
+					player: 1
+				})
+			}
 			this.swap(squares, srcIndex, destIndex);
 			console.log(srcIndex, destIndex)
-
 		}
 
 
 
 
-		// console.log(findIndex(this.state.squares[i]))
-		// let index = squares.findIndex((element, index) => {
-		// 	if (element === squares[i]) {
-		// 		return true
-		// 	}
 
 
-		// })
-		// console.log(index)
 
 
-		// console.log(squares[17])
-		// console.log(squares[0])
-		// this.setState({
-		// 	squares: squares
 
 
-		// })
+
 
 	}
 
@@ -106,6 +83,8 @@ export default class Game extends React.Component {
 						/>
 
 					</div>
+					{(this.state.player === 1) ? <div>Turn White</div> :
+						<div>Turn BLack</div>}
 				</div>
 
 			</>
