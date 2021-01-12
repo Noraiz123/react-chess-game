@@ -1,5 +1,6 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  /* font: 14px "Century Gothic", Futura, sans-serif; */
+  font-family: 'Roboto', sans-serif;
   margin: 20px;
   background-color: #ECECEA;
 }
@@ -36,7 +37,7 @@ ul {
 }
 
 .square:focus {
-  outline: none;
+  /* outline: none; */
 }
 
 .kbd-navigation .square:focus {
@@ -45,20 +46,23 @@ ul {
 
 .main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+
 
 }
 
 .game-info {
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 
 .icons-attribution,
 .game-status,
 .fallen-soldier-block {
-  margin-top: 20px;
+  margin-top: 10px;
   min-height: 60px;
 }
 
@@ -70,11 +74,12 @@ ul {
   background-color: RGB(234, 240, 206);
 }
 
-#player-turn-box {
+.player-turn-box {
   width: 32px;
   height: 32px;
   border: 1px solid #000;
   margin-bottom: 10px;
+  margin: auto;
 }
 
 h3 {

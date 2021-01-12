@@ -17,7 +17,7 @@ export default class Pawn extends Pieces {
 			}
 		}
 		else if (this.player === 2) {
-			if (destIndex === srcIndex - 8) {
+			if (destIndex === srcIndex + 8) {
 				return true
 			}
 		}

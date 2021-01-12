@@ -27,10 +27,15 @@ export default class Game extends React.Component {
     input[index_A] = null
   }
 
-  srcHandeler(squares, player, i) {
+
+
+
+  srcHandeler(squares, srcIndex, player, i) {
     if (squares[i] && squares[i].player === this.state.player) {
+      squares[i].style = { ...squares[i].style, backgroundColor: "RGBA(111,143,114,0.5)" }
       this.setState({
         srcIndex: i,
+        warning: 'Now Choose Your Destination'
       })
 
     } else {
@@ -39,21 +44,26 @@ export default class Game extends React.Component {
       })
 
     }
+
+
   }
 
   destHandeler(squares, player, srcIndex, i) {
 
     let destIndex = i
     const ispossibleMove = squares[srcIndex].possibleMove(srcIndex, destIndex)
+
     if (ispossibleMove) {
+
       if (squares[i] && squares[i].player === player) {
         this.srcHandeler(squares, player, i)
       } else {
-
+        squares[srcIndex].style = { ...squares[srcIndex].style, backgroundColor: "" }
         this.swap(squares, srcIndex, destIndex);
         console.log(srcIndex, destIndex)
         this.setState({
           srcIndex: -1,
+          turn: player === 1 ? 'black' : 'white',
           player: player === 1 ? 2 : 1,
         })
       }
@@ -68,8 +78,7 @@ export default class Game extends React.Component {
 
     let { squares, player, srcIndex } = this.state
 
-    console.log(squares[srcIndex])
-    console.log(srcIndex)
+
 
     this.setState({
       warning: ''
@@ -77,13 +86,13 @@ export default class Game extends React.Component {
 
 
     if (srcIndex === -1) {
-      this.srcHandeler(squares, player, i)
+      this.srcHandeler(squares, srcIndex, player, i)
+
     }
     // destination selection
     else {
       this.destHandeler(squares, player, srcIndex, i)
     }
-
 
   }
 
@@ -108,12 +117,12 @@ export default class Game extends React.Component {
             />
 
           </div>
-          <div>
-            {(this.state.player === 1) ? <div>Turn White</div> :
-              <div>Turn BLack</div>}
+          <div className="game-info">
+            <h4>Turn of Player</h4>
+            <div className="player-turn-box" style={{ backgroundColor: this.state.turn }}></div>
           </div>
           <div className="game-status">
-            {this.state.warning}
+            <h3>{this.state.warning}</h3>
           </div>
 
         </div>
