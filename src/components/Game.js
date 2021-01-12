@@ -15,7 +15,6 @@ export default class Game extends React.Component {
       selection: false,
       player: 1,
       srcIndex: -1,
-      destIndex: -1,
       warning: '',
       turn: 'white',
     };
@@ -29,11 +28,9 @@ export default class Game extends React.Component {
   }
 
   srcHandeler(squares, player, i) {
-    // console.log(squares[i])
     if (squares[i] && squares[i].player === this.state.player) {
       this.setState({
         srcIndex: i,
-        // destIndex: -1,
       })
 
     } else {
@@ -46,31 +43,31 @@ export default class Game extends React.Component {
 
   destHandeler(squares, player, srcIndex, i) {
 
-
     let destIndex = i
-    if (squares[i] && squares[i].player === player) {
-      this.srcHandeler(squares, player, i)
-    } else {
+    const ispossibleMove = squares[srcIndex].possibleMove(srcIndex, destIndex)
+    if (ispossibleMove) {
+      if (squares[i] && squares[i].player === player) {
+        this.srcHandeler(squares, player, i)
+      } else {
 
-      this.swap(squares, srcIndex, destIndex);
-      console.log(srcIndex, destIndex)
+        this.swap(squares, srcIndex, destIndex);
+        console.log(srcIndex, destIndex)
+        this.setState({
+          srcIndex: -1,
+          player: player === 1 ? 2 : 1,
+        })
+      }
+    } else {
       this.setState({
-        srcIndex: -1,
-        destIndex: i,
-        player: player === 1 ? 2 : 1,
+        warning: 'Wrong Destination'
       })
     }
-
-    // console.log(squares[i].player)
-    // console.log(this.state.destIndex)
-
-
   }
 
   clickHandeler(i) {
 
-    let { squares, player, srcIndex, destIndex } = this.state
-    const ispossibleMove = squares[48].possibleMove(48, 40)
+    let { squares, player, srcIndex } = this.state
+
     console.log(squares[srcIndex])
     console.log(srcIndex)
 
@@ -78,21 +75,16 @@ export default class Game extends React.Component {
       warning: ''
     })
 
-    if (ispossibleMove) {
-      if (srcIndex === -1) {
-        this.srcHandeler(squares, player, i)
-      }
-      // destination selection
-      else {
-        this.destHandeler(squares, player, srcIndex, i)
-      }
 
-
-    } else {
-      this.setState({
-        warning: 'wrong Destination'
-      })
+    if (srcIndex === -1) {
+      this.srcHandeler(squares, player, i)
     }
+    // destination selection
+    else {
+      this.destHandeler(squares, player, srcIndex, i)
+    }
+
+
   }
 
 

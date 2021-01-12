@@ -14,12 +14,16 @@ export default class Pawn extends Pieces {
 		if (this.player === 1) {
 			if (destIndex === srcIndex - 8) {
 				return true
-			} else if (this.player === 2) {
-				if (destIndex === srcIndex - 8) {
-					return true
-				}
 			}
-		} else return false
+		}
+		else if (this.player === 2) {
+			if (destIndex === srcIndex - 8) {
+				return true
+			}
+		}
+		else {
+			return false
+		}
 	}
 
 }
