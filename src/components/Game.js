@@ -5,6 +5,7 @@ import BoardInitializer from './BoardInitializer';
 
 
 
+
 export default class Game extends React.Component {
   constructor() {
     super()
@@ -14,6 +15,7 @@ export default class Game extends React.Component {
       selection: false,
       player: 1,
       srcIndex: -1,
+      destIndex: -1,
       warning: '',
       turn: 'white',
     };
@@ -27,10 +29,11 @@ export default class Game extends React.Component {
   }
 
   srcHandeler(squares, player, i) {
-    console.log(squares[i])
+    // console.log(squares[i])
     if (squares[i] && squares[i].player === this.state.player) {
       this.setState({
         srcIndex: i,
+        // destIndex: -1,
       })
 
     } else {
@@ -53,32 +56,43 @@ export default class Game extends React.Component {
       console.log(srcIndex, destIndex)
       this.setState({
         srcIndex: -1,
+        destIndex: i,
         player: player === 1 ? 2 : 1,
       })
     }
 
-    console.log(squares[i].player)
+    // console.log(squares[i].player)
+    // console.log(this.state.destIndex)
 
 
   }
 
   clickHandeler(i) {
 
-    let { squares, player, srcIndex } = this.state
+    let { squares, player, srcIndex, destIndex } = this.state
+    const ispossibleMove = squares[48].possibleMove(48, 40)
+    console.log(squares[srcIndex])
+    console.log(srcIndex)
 
     this.setState({
       warning: ''
     })
 
-    if (srcIndex === -1) {
-      this.srcHandeler(squares, player, i)
-    }
-    // destination selection
-    else {
-      this.destHandeler(squares, player, srcIndex, i)
-    }
+    if (ispossibleMove) {
+      if (srcIndex === -1) {
+        this.srcHandeler(squares, player, i)
+      }
+      // destination selection
+      else {
+        this.destHandeler(squares, player, srcIndex, i)
+      }
 
 
+    } else {
+      this.setState({
+        warning: 'wrong Destination'
+      })
+    }
   }
 
 
