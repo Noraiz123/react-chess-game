@@ -32,7 +32,7 @@ export default class Game extends React.Component {
 
   srcHandeler(squares, srcIndex, player, i) {
     if (squares[i] && squares[i].player === this.state.player) {
-      squares[i].style = { ...squares[i].style, backgroundColor: "RGBA(111,143,114,0.5)" }
+      squares[i].style = { ...squares[i].style, backgroundColor: "RGBA(111,143,114,0.8)" }
       this.setState({
         srcIndex: i,
         warning: 'Now Choose Your Destination'
