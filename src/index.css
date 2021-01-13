@@ -1,7 +1,10 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  /* font: 14px "Century Gothic", Futura, sans-serif; */
+  font-family: 'Roboto', sans-serif;
   margin: 20px;
   background-color: #ECECEA;
+  color: #404040;
+  font-weight: 600;
 }
 
 ol,
@@ -26,17 +29,19 @@ ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 48px;
+  height: 50px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 48px;
+  width: 50px;
   margin: 0 auto;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .square:focus {
-  outline: none;
+  /* outline: none; */
 }
 
 .kbd-navigation .square:focus {
@@ -45,36 +50,41 @@ ul {
 
 .main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+
 
 }
 
 .game-info {
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 
 .icons-attribution,
 .game-status,
 .fallen-soldier-block {
-  margin-top: 20px;
-  min-height: 50px;
+  margin-top: 10px;
+  min-height: 60px;
 }
 
 .dark-square {
-  background-color: RGB(187, 190, 50);
+  background-color: rgb(145, 171, 120);
+
 }
 
 .light-square {
-  background-color: RGB(234, 240, 206);
+  background-color: rgb(241, 241, 219);
 }
 
-#player-turn-box {
-  width: 32px;
-  height: 32px;
+.player-turn-box {
+  width: 40px;
+  height: 40px;
   border: 1px solid #000;
   margin-bottom: 10px;
+  margin: auto;
 }
 
 h3 {
