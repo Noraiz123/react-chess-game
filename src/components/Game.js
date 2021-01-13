@@ -1,8 +1,15 @@
+import { findAllByAltText } from '@testing-library/react';
 import React from 'react';
-import King from '../pieces/King';
+// import King from '../pieces/King';
 import Pieces from '../pieces/Pieces';
 import Board from './Board';
 import BoardInitializer from './BoardInitializer';
+import Rook from '../pieces/Rook';
+import Queen from '../pieces/Queen';
+import Pawn from '../pieces/Pawn';
+import Knight from '../pieces/Knight';
+import King from '../pieces/King';
+import Bishop from '../pieces/Bishop';
 
 
 
@@ -58,9 +65,13 @@ export default class Game extends React.Component {
 
     if (ispossibleMove) {
       if (squares[destIndex] && squares[destIndex].constructor.name === 'King') {
+
         this.setState({
           checkmate: `${this.state.turn} Player Won the Game 🙂`
         })
+        setTimeout(() => {
+          window.location.reload()
+        }, 5000);
       }
 
       if (squares[i] && squares[i].player === player) {
@@ -105,6 +116,11 @@ export default class Game extends React.Component {
       this.destHandeler(squares, player, srcIndex, i)
     }
   }
+  resetHandeler() {
+    // BoardInitializer()
+    window.location.reload()
+
+  }
 
 
 
@@ -120,23 +136,30 @@ export default class Game extends React.Component {
   render() {
     return (
       <>
-        <div className="main">
-          <div className="game-board">
-            <Board
-              squares={this.state.squares}
-              onClick={(i) => this.clickHandeler(i)}
-            />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="main">
+                <div className="game-board">
+                  <Board
+                    squares={this.state.squares}
+                    onClick={(i) => this.clickHandeler(i)}
+                  />
 
-          </div>
-          <div className="game-info">
-            <h4>Turn of Player</h4>
-            <div className="player-turn-box" style={{ backgroundColor: this.state.turn }}></div>
-          </div>
-          <div className="game-status">
-            <h3>{this.state.warning}</h3>
-            <h3>{this.state.checkmate}</h3>
-          </div>
+                </div>
+                <div className="game-info">
+                  <h4>Turn of Player</h4>
+                  <div className="player-turn-box" style={{ backgroundColor: this.state.turn }}></div>
+                </div>
+                <div className="game-status">
+                  <h3>{this.state.warning}</h3>
+                  <h3>{this.state.checkmate}</h3>
+                </div>
+                <button className="btn btn-success" onClick={this.resetHandeler}>Reset Pieces</button>
 
+              </div>
+            </div>
+          </div>
         </div>
 
       </>
