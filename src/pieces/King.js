@@ -5,22 +5,16 @@ class King extends Pieces {
 		super(player, (player === 1 ? "https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg" :
 			"https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg"));
 	}
-	// isMovePossible(src, dest) {
-	// 	return (
-	// 		src - 9 === dest ||
-	// 		src - 7 === dest ||
-	// 		src - 7 === dest ||
-	// 		src + 1 === dest ||
-	// 		src + 9 === dest ||
-	// 		src + 8 === dest ||
-	// 		src + 7 === dest ||
-	// 		src - 1 === dest
-	// 	)
-	// }
+	possibleMove(srcIndex, destIndex) {
+		return (
+			srcIndex - 9 === destIndex || srcIndex - 7 === destIndex ||
+			srcIndex - 7 === destIndex || srcIndex + 1 === destIndex ||
+			srcIndex + 9 === destIndex || srcIndex + 8 === destIndex ||
+			srcIndex + 7 === destIndex || srcIndex - 1 === destIndex
+		)
+	}
 
-	// getSrcToDestPath(src, dest) {
-	// 	return [];
-	// }
+
 }
 
 export default King;

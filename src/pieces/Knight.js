@@ -7,13 +7,10 @@ export default class Knight extends Pieces {
 	}
 
 	possibleMove(srcIndex, destIndex) {
-		return (srcIndex - 17 === destIndex ||
-			srcIndex - 10 === destIndex ||
-			srcIndex + 6 === destIndex ||
-			srcIndex + 15 === destIndex ||
-			srcIndex - 15 === destIndex ||
-			srcIndex - 6 === destIndex ||
-			srcIndex + 10 === destIndex ||
-			srcIndex + 17 === destIndex);
+		return (srcIndex - 17 === destIndex || srcIndex - 10 === destIndex ||
+			srcIndex + 6 === destIndex || srcIndex + 15 === destIndex ||
+			srcIndex - 15 === destIndex || srcIndex - 6 === destIndex ||
+			srcIndex + 10 === destIndex || srcIndex + 17 === destIndex
+		)
 	}
 }

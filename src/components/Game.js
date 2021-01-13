@@ -56,7 +56,8 @@ export default class Game extends React.Component {
     if (ispossibleMove) {
 
       if (squares[i] && squares[i].player === player) {
-        this.srcHandeler(squares, player, i)
+        this.srcHandeler(squares, srcIndex, player, i)
+        squares[srcIndex].style = { ...squares[srcIndex].style, backgroundColor: "" }
       } else {
         squares[srcIndex].style = { ...squares[srcIndex].style, backgroundColor: "" }
         this.swap(squares, srcIndex, destIndex);

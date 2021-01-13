@@ -6,4 +6,10 @@ export default class Rook extends Pieces {
 			"https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"));
 	}
 
+	possibleMove(srcIndex, destIndex) {
+		let mod = srcIndex % 8;
+		let diff = 8 - mod;
+		return (Math.abs(srcIndex - destIndex) % 8 === 0 || (destIndex >= (srcIndex - mod) && destIndex < (srcIndex + diff)));
+	}
+
 }
