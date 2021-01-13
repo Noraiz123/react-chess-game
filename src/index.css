@@ -36,6 +36,8 @@ ul {
   text-align: center;
   width: 50px;
   margin: 0 auto;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .square:focus {
@@ -69,11 +71,12 @@ ul {
 }
 
 .dark-square {
-  background-color: RGB(187, 190, 50);
+  background-color: rgb(145, 171, 120);
+
 }
 
 .light-square {
-  background-color: RGB(234, 240, 206);
+  background-color: rgb(241, 241, 219);
 }
 
 .player-turn-box {

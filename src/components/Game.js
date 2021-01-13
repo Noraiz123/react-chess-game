@@ -1,4 +1,6 @@
 import React from 'react';
+import King from '../pieces/King';
+import Pieces from '../pieces/Pieces';
 import Board from './Board';
 import BoardInitializer from './BoardInitializer';
 
@@ -16,7 +18,8 @@ export default class Game extends React.Component {
       player: 1,
       srcIndex: -1,
       warning: '',
-      turn: 'white',
+      turn: 'White',
+      checkmate: ''
     };
   }
   swap(input, index_A, index_B) {
@@ -32,7 +35,7 @@ export default class Game extends React.Component {
 
   srcHandeler(squares, srcIndex, player, i) {
     if (squares[i] && squares[i].player === this.state.player) {
-      squares[i].style = { ...squares[i].style, backgroundColor: "RGBA(111,143,114,0.8)" }
+      squares[i].style = { ...squares[i].style, backgroundColor: "rgb(247, 248, 132)" }
       this.setState({
         srcIndex: i,
         warning: 'Now Choose Your Destination'
@@ -54,6 +57,11 @@ export default class Game extends React.Component {
     const ispossibleMove = squares[srcIndex].possibleMove(srcIndex, destIndex)
 
     if (ispossibleMove) {
+      if (squares[destIndex] && squares[destIndex].constructor.name === 'King') {
+        this.setState({
+          checkmate: `${this.state.turn} Player Won the Game 🙂`
+        })
+      }
 
       if (squares[i] && squares[i].player === player) {
         this.srcHandeler(squares, srcIndex, player, i)
@@ -64,7 +72,7 @@ export default class Game extends React.Component {
         console.log(srcIndex, destIndex)
         this.setState({
           srcIndex: -1,
-          turn: player === 1 ? 'black' : 'white',
+          turn: player === 1 ? 'Black' : 'White',
           player: player === 1 ? 2 : 1,
         })
       }
@@ -73,6 +81,8 @@ export default class Game extends React.Component {
         warning: 'Wrong Destination'
       })
     }
+
+
   }
 
   clickHandeler(i) {
@@ -94,8 +104,8 @@ export default class Game extends React.Component {
     else {
       this.destHandeler(squares, player, srcIndex, i)
     }
-
   }
+
 
 
 
@@ -124,6 +134,7 @@ export default class Game extends React.Component {
           </div>
           <div className="game-status">
             <h3>{this.state.warning}</h3>
+            <h3>{this.state.checkmate}</h3>
           </div>
 
         </div>

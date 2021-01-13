@@ -8,7 +8,7 @@ class King extends Pieces {
 	possibleMove(srcIndex, destIndex) {
 		return (
 			srcIndex - 9 === destIndex || srcIndex - 7 === destIndex ||
-			srcIndex - 7 === destIndex || srcIndex + 1 === destIndex ||
+			srcIndex - 8 === destIndex || srcIndex + 1 === destIndex ||
 			srcIndex + 9 === destIndex || srcIndex + 8 === destIndex ||
 			srcIndex + 7 === destIndex || srcIndex - 1 === destIndex
 		)
