@@ -25,7 +25,7 @@ export default class Game extends React.Component {
     };
   }
 
-  swap(input, index_A, index_B) {
+  swap = (input, index_A, index_B) => {
     let temp = input[index_A];
 
     input[index_A] = input[index_B];
@@ -33,7 +33,7 @@ export default class Game extends React.Component {
     input[index_A] = null
   }
 
-  srcHandeler(squares, srcIndex, player, i) {
+  srcHandeler = (squares, srcIndex, player, i) => {
     if (squares[i] && squares[i].player === this.state.player) {
       squares[i].style = { ...squares[i].style, backgroundColor: "rgb(247, 248, 132)" }
       this.setState({
@@ -51,7 +51,7 @@ export default class Game extends React.Component {
 
   }
 
-  destHandeler(squares, player, srcIndex, i) {
+  destHandeler = (squares, player, srcIndex, i) => {
 
     let destIndex = i
     const destOccupied = squares[i] ? true : false;
@@ -126,7 +126,7 @@ export default class Game extends React.Component {
     this.setState({
       warning: ''
     })
-
+    //src selection
     if (srcIndex === -1) {
       this.srcHandeler(squares, srcIndex, player, i)
 
@@ -136,12 +136,22 @@ export default class Game extends React.Component {
       this.destHandeler(squares, player, srcIndex, i)
     }
   }
-  resetHandeler() {
-
-    window.location.reload()
+  resetHandeler = () => {
+    this.setState({
+      squares: BoardInitializer(),
+      status: '',
+      selection: false,
+      whiteKilledPieces: [],
+      blackKilledPieces: [],
+      player: 1,
+      srcIndex: -1,
+      warning: '',
+      turn: 'White',
+      checkmate: ''
+    });
 
   }
-  pieceJumphHandeler(destPath) {
+  pieceJumphHandeler = (destPath) => {
     let jump = true;
     for (let i = 0; i < destPath.length; i++) {
       if (this.state.squares[destPath[i]] !== null) {
