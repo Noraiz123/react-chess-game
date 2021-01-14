@@ -1,8 +1,8 @@
 import React from 'react';
-import King from '../pieces/King';
-import Pieces from '../pieces/Pieces';
 import Board from './Board';
 import BoardInitializer from './BoardInitializer';
+import KilledPieces from './KilledPieces';
+
 
 
 
@@ -15,6 +15,8 @@ export default class Game extends React.Component {
       squares: BoardInitializer(),
       status: '',
       selection: false,
+      whiteKilledPieces: [],
+      blackKilledPieces: [],
       player: 1,
       srcIndex: -1,
       warning: '',
@@ -22,6 +24,7 @@ export default class Game extends React.Component {
       checkmate: ''
     };
   }
+
   swap(input, index_A, index_B) {
     let temp = input[index_A];
 
@@ -29,9 +32,6 @@ export default class Game extends React.Component {
     input[index_B] = temp;
     input[index_A] = null
   }
-
-
-
 
   srcHandeler(squares, srcIndex, player, i) {
     if (squares[i] && squares[i].player === this.state.player) {
@@ -54,13 +54,40 @@ export default class Game extends React.Component {
   destHandeler(squares, player, srcIndex, i) {
 
     let destIndex = i
-    const ispossibleMove = squares[srcIndex].possibleMove(srcIndex, destIndex)
+    const destOccupied = squares[i] ? true : false;
+    const ispossibleMove = squares[srcIndex].possibleMove(srcIndex, destIndex, destOccupied)
+    const destPath = squares[srcIndex].destPath(srcIndex, destIndex)
+    const jumpPossible = this.pieceJumphHandeler(destPath)
+    const whiteKilledPieces = this.state.whiteKilledPieces.slice();
+    const blackKilledPieces = this.state.blackKilledPieces.slice();
 
-    if (ispossibleMove) {
+    if (ispossibleMove && jumpPossible) {
+      if (squares[destIndex] !== null) {
+        if (squares[destIndex].player === 1) {
+          whiteKilledPieces.push(squares[destIndex]);
+          this.setState({
+            whiteKilledPieces: whiteKilledPieces,
+          })
+        }
+        else {
+          blackKilledPieces.push(squares[destIndex]);
+          this.setState({
+            blackKilledPieces: blackKilledPieces,
+          })
+        }
+      }
       if (squares[destIndex] && squares[destIndex].constructor.name === 'King') {
+
         this.setState({
           checkmate: `${this.state.turn} Player Won the Game 🙂`
         })
+        setTimeout(() => {
+          // window.location.reload()
+          this.setState({
+            squares: BoardInitializer(),
+            checkmate: ''
+          })
+        }, 5000);
       }
 
       if (squares[i] && squares[i].player === player) {
@@ -85,16 +112,12 @@ export default class Game extends React.Component {
 
   }
 
-  clickHandeler(i) {
+  clickHandeler = (i) => {
 
     let { squares, player, srcIndex } = this.state
-
-
-
     this.setState({
       warning: ''
     })
-
 
     if (srcIndex === -1) {
       this.srcHandeler(squares, srcIndex, player, i)
@@ -105,21 +128,26 @@ export default class Game extends React.Component {
       this.destHandeler(squares, player, srcIndex, i)
     }
   }
+  resetHandeler() {
 
+    window.location.reload()
 
-
-
-
-
-
-
-
-
+  }
+  pieceJumphHandeler(destPath) {
+    let jump = true;
+    for (let i = 0; i < destPath.length; i++) {
+      if (this.state.squares[destPath[i]] !== null) {
+        jump = false;
+      }
+    }
+    return jump;
+  }
 
 
   render() {
     return (
       <>
+
         <div className="main">
           <div className="game-board">
             <Board
@@ -131,13 +159,27 @@ export default class Game extends React.Component {
           <div className="game-info">
             <h4>Turn of Player</h4>
             <div className="player-turn-box" style={{ backgroundColor: this.state.turn }}></div>
-          </div>
-          <div className="game-status">
-            <h3>{this.state.warning}</h3>
-            <h3>{this.state.checkmate}</h3>
+            <div className="game-status">
+              <h3>{this.state.warning}</h3>
+              <h3>{this.state.checkmate}</h3>
+            </div>
+            <button className="btn btn-success" onClick={this.resetHandeler}>Reset Pieces</button>
+            <h4>Killed Pieces</h4>
+            <div className="killed">
+              <div className="pieces">
+                <KilledPieces
+                  whiteKilledPieces={this.state.whiteKilledPieces}
+                  blackKilledPieces={this.state.blackKilledPieces}
+                />
+              </div>
+            </div>
           </div>
 
         </div>
+
+
+
+
 
       </>
     )

@@ -13,4 +13,7 @@ export default class Knight extends Pieces {
 			srcIndex + 10 === destIndex || srcIndex + 17 === destIndex
 		)
 	}
+	destPath() {
+		return []
+	}
 }
