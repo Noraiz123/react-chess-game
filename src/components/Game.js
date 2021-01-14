@@ -159,21 +159,24 @@ export default class Game extends React.Component {
           <div className="game-info">
             <h4>Turn of Player</h4>
             <div className="player-turn-box" style={{ backgroundColor: this.state.turn }}></div>
+            <div className="game-status">
+              <h3>{this.state.warning}</h3>
+              <h3>{this.state.checkmate}</h3>
+            </div>
+            <button className="btn btn-success" onClick={this.resetHandeler}>Reset Pieces</button>
+            <h4>Killed Pieces</h4>
+            <div className="killed">
+              <div className="pieces">
+                <KilledPieces
+                  whiteKilledPieces={this.state.whiteKilledPieces}
+                  blackKilledPieces={this.state.blackKilledPieces}
+                />
+              </div>
+            </div>
           </div>
-          <div className="game-status">
-            <h3>{this.state.warning}</h3>
-            <h3>{this.state.checkmate}</h3>
-          </div>
-          <button className="btn btn-success" onClick={this.resetHandeler}>Reset Pieces</button>
+
         </div>
-        <div className="killed">
-          <div className="pieces">
-            <KilledPieces
-              whiteKilledPieces={this.state.whiteKilledPieces}
-              blackKilledPieces={this.state.blackKilledPieces}
-            />
-          </div>
-        </div>
+
 
 
 

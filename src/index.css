@@ -2,7 +2,8 @@ body {
   /* font: 14px "Century Gothic", Futura, sans-serif; */
   font-family: 'Roboto', sans-serif;
   margin: 20px;
-  background-color: #ECECEA;
+  background-color: #404040;
+  ;
   color: #404040;
   font-weight: 600;
 }
@@ -24,33 +25,42 @@ ul {
 
 .square {
   background: transparent;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 50px;
+  height: 80px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 50px;
+  width: 80px;
   margin: 0 auto;
   transition: 0.5s;
   cursor: pointer;
-
+  /* border: 10px solid black */
 }
 
+.square:focus {
+  outline: none;
+}
+
+.board {
+  border: 10px solid black
+}
 
 
 
 
 .main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
+  outline: none;
+  /* border: 10px solid black; */
   /* flex-wrap: nowrap; */
 
 
@@ -63,7 +73,8 @@ ul {
 .game-status,
 .fallen-soldier-block {
   margin-top: 10px;
-  height: 60px;
+  width: 400px;
+  height: 100px;
 }
 
 .dark-square {
@@ -84,13 +95,18 @@ ul {
 }
 
 h4 {
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .killed {
+  margin: 30px 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: auto;
-  background-color: grey;
+  height: 200px
+}
+
+.game-info {
+  margin-left: 80px;
+  background-color: #a7be92;
+  height: 650px;
 }
