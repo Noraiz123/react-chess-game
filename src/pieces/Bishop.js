@@ -9,4 +9,29 @@ export default class Bishop extends Pieces {
 		return (Math.abs(srcIndex - destIndex) % 9 === 0 || Math.abs(srcIndex - destIndex) % 7 === 0);
 	}
 
+	destPath(srcIndex, destIndex) {
+		let path = [], start, end, increment;
+		if (srcIndex > destIndex) {
+			start = destIndex;
+			end = srcIndex;
+		}
+		else {
+			start = srcIndex;
+			end = destIndex;
+		}
+		if (Math.abs(srcIndex - destIndex) % 9 === 0) {
+			increment = 9;
+			start += 9;
+		}
+		else {
+			increment = 7;
+			start += 7;
+		}
+
+		for (let i = start; i < end; i += increment) {
+			path.push(i);
+		}
+		return path;
+	}
+
 }

@@ -14,6 +14,10 @@ class King extends Pieces {
 		)
 	}
 
+	destPath() {
+		return []
+	}
+
 
 }
 
