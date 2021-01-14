@@ -43,7 +43,7 @@ export default class Game extends React.Component {
 
     } else {
       this.setState({
-        warning: `Wrong player selected Select  Player ${this.state.player} Pieces`
+        warning: `Select Player ${this.state.player} Pieces`
       })
 
     }
@@ -85,9 +85,17 @@ export default class Game extends React.Component {
           // window.location.reload()
           this.setState({
             squares: BoardInitializer(),
+            status: '',
+            selection: false,
+            whiteKilledPieces: [],
+            blackKilledPieces: [],
+            player: 1,
+            srcIndex: -1,
+            warning: '',
+            turn: 'White',
             checkmate: ''
-          })
-        }, 5000);
+          });
+        }, 3000);
       }
 
       if (squares[i] && squares[i].player === player) {
@@ -165,6 +173,7 @@ export default class Game extends React.Component {
             </div>
             <button className="btn btn-success" onClick={this.resetHandeler}>Reset Pieces</button>
             <h4>Killed Pieces</h4>
+            <h1>👇</h1>
             <div className="killed">
               <div className="pieces">
                 <KilledPieces
