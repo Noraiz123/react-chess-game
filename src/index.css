@@ -1,9 +1,8 @@
 body {
-  /* font: 14px "Century Gothic", Futura, sans-serif; */
-  font-family: 'Roboto', sans-serif;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  /* font-family: 'Roboto', sans-serif !important; */
   margin: 20px;
-  background-color: #404040;
-  ;
+  background-color: #ddd;
   color: #404040;
   font-weight: 600;
 }
@@ -39,7 +38,6 @@ ul {
   margin: 0 auto;
   transition: 0.5s;
   cursor: pointer;
-  /* border: 10px solid black */
 }
 
 .square:focus {
@@ -60,10 +58,6 @@ ul {
   align-items: center;
   text-align: center;
   outline: none;
-  /* border: 10px solid black; */
-  /* flex-wrap: nowrap; */
-
-
 }
 
 
@@ -96,6 +90,12 @@ ul {
 
 h4 {
   margin: 20px 0;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: normal;
 }
 
 .killed {
@@ -107,6 +107,11 @@ h4 {
 
 .game-info {
   margin-left: 80px;
-  background-color: #a7be92;
+  background-color: #ddd;
   height: 650px;
+  border-radius: 8px;
+  box-shadow:
+    12px 12px 16px 0 rgba(0, 0, 0, 0.15),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.7);
+
 }
