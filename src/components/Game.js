@@ -62,7 +62,7 @@ export default class Game extends React.Component {
     const blackKilledPieces = this.state.blackKilledPieces.slice();
 
     if (ispossibleMove && jumpPossible) {
-      if (squares[destIndex] !== null) {
+      if (squares[destIndex] !== null && squares[destIndex].player !== player) {
         if (squares[destIndex].player === 1) {
           whiteKilledPieces.push(squares[destIndex]);
           this.setState({
