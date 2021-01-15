@@ -76,7 +76,7 @@ export default class Game extends React.Component {
           })
         }
       }
-      if (squares[destIndex] && squares[destIndex].constructor.name === 'King') {
+      if (squares[destIndex] && squares[destIndex].constructor.name === 'King' && squares[destIndex].player !== player) {
 
         this.setState({
           checkmate: `${this.state.turn} Player Won the Game 🙂`
@@ -98,7 +98,7 @@ export default class Game extends React.Component {
         }, 3000);
       }
 
-      if (squares[i] && squares[i].player === player) {
+      if (squares[destIndex] && squares[destIndex].player === squares[srcIndex].player) {
         this.srcHandeler(squares, srcIndex, player, i)
         squares[srcIndex].style = { ...squares[srcIndex].style, backgroundColor: "" }
       } else {
