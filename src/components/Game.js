@@ -17,6 +17,7 @@ export default class Game extends React.Component {
       selection: false,
       whiteKilledPieces: [],
       blackKilledPieces: [],
+      killed: false,
       player: 1,
       srcIndex: -1,
       warning: '',
@@ -67,12 +68,14 @@ export default class Game extends React.Component {
           whiteKilledPieces.push(squares[destIndex]);
           this.setState({
             whiteKilledPieces: whiteKilledPieces,
+            killed: true
           })
         }
         else {
           blackKilledPieces.push(squares[destIndex]);
           this.setState({
             blackKilledPieces: blackKilledPieces,
+            killed: this.state.killed ? false : true
           })
         }
       }
@@ -89,6 +92,7 @@ export default class Game extends React.Component {
             selection: false,
             whiteKilledPieces: [],
             blackKilledPieces: [],
+            killed: false,
             player: 1,
             srcIndex: -1,
             warning: '',
@@ -117,7 +121,6 @@ export default class Game extends React.Component {
       })
     }
 
-
   }
 
   clickHandeler = (i) => {
@@ -143,6 +146,7 @@ export default class Game extends React.Component {
       selection: false,
       whiteKilledPieces: [],
       blackKilledPieces: [],
+      killed: false,
       player: 1,
       srcIndex: -1,
       warning: '',
@@ -182,8 +186,8 @@ export default class Game extends React.Component {
               <h3>{this.state.checkmate}</h3>
             </div>
             <button className="btn btn-success" onClick={this.resetHandeler}>Reset Pieces</button>
-            <h4>Killed Pieces</h4>
-            <h1>👇</h1>
+
+            {!this.state.killed ? '' : <h4>Killed Pieces</h4>}
             <div className="killed">
               <div className="pieces">
                 <KilledPieces

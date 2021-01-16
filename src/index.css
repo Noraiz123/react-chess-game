@@ -102,16 +102,40 @@ h3 {
   margin: 30px 0;
   display: flex;
   justify-content: center;
-  height: 200px
+  height: 200px;
+  width: auto
 }
 
 .game-info {
   margin-left: 80px;
   background-color: #ddd;
+  width: 400px;
   height: 650px;
   border-radius: 8px;
   box-shadow:
     12px 12px 16px 0 rgba(0, 0, 0, 0.15),
     -8px -8px 12px 0 rgba(255, 255, 255, 0.7);
+
+}
+
+h3 {
+  font-weight: bold;
+}
+
+/* Responsive */
+
+@media(max-width:1185px) {
+  .main {}
+
+  .square {
+    width: 30px;
+    height: 30px;
+  }
+
+  .game-info {
+    width: 200px;
+    height: auto;
+    font-size: 10px;
+  }
 
 }
