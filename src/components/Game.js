@@ -75,7 +75,7 @@ export default class Game extends React.Component {
           blackKilledPieces.push(squares[destIndex]);
           this.setState({
             blackKilledPieces: blackKilledPieces,
-            killed: this.state.killed ? false : true
+            killed: true
           })
         }
       }
