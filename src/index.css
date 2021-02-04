@@ -1,5 +1,5 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px 'Century Gothic', Futura, sans-serif;
   /* font-family: 'Roboto', sans-serif !important; */
   margin: 20px;
   background-color: #ddd;
@@ -14,7 +14,7 @@ ul {
 
 .board-row:after {
   clear: both;
-  content: "";
+  content: '';
   display: table;
 }
 
@@ -45,11 +45,8 @@ ul {
 }
 
 .board {
-  border: 10px solid black
+  border: 10px solid black;
 }
-
-
-
 
 .main {
   display: flex;
@@ -59,9 +56,6 @@ ul {
   text-align: center;
   outline: none;
 }
-
-
-
 
 .icons-attribution,
 .game-status,
@@ -73,7 +67,6 @@ ul {
 
 .dark-square {
   background-color: rgb(145, 171, 120);
-
 }
 
 .light-square {
@@ -103,7 +96,7 @@ h3 {
   display: flex;
   justify-content: center;
   height: 200px;
-  width: auto
+  width: auto;
 }
 
 .game-info {
@@ -112,10 +105,8 @@ h3 {
   width: 400px;
   height: 650px;
   border-radius: 8px;
-  box-shadow:
-    12px 12px 16px 0 rgba(0, 0, 0, 0.15),
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.15),
     -8px -8px 12px 0 rgba(255, 255, 255, 0.7);
-
 }
 
 h3 {
@@ -124,8 +115,9 @@ h3 {
 
 /* Responsive */
 
-@media(max-width:1185px) {
-  .main {}
+@media (max-width: 1185px) {
+  .main {
+  }
 
   .square {
     width: 30px;
@@ -137,5 +129,4 @@ h3 {
     height: auto;
     font-size: 10px;
   }
-
 }
